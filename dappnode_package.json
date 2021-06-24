@@ -1,24 +1,34 @@
 {
   "name": "trueblocks.public.dappnode.eth",
-  "version": "0.0.1",
-  "description": "DAppNodePackage_trueblocks address index",
-  "avatar": "/ipfs/QmSkvLe9EvmvrSKepJvWCktmieMgaF9ricmaWdB7KMRT2n",
+  "version": "0.1.0",
+  "upstreamVersion": "master",
+  "shortDescription": "Access to the Ethereum data while remaining fully local",
+  "description": "TrueBlocks builds an index that lets you explore the Ethereum blockchain from your local machine",
   "type": "service",
-  "image": {
-    "path": "trueblocks.public.dappnode.eth_0.0.1.tar.xz",
-    "hash": "/ipfs/QmdGrsZg24fAta2EdjxjJxYAMVMuZEkW8hwMbeSfsvDvUP",
-    "size": 92429787,
-    "restart": "always",
-    "volumes": [
-      "trueblocks_data:/root/.quickBlocks"
-    ],
-    "environment": [
-      "RPC_PROVIDER=http://my.ethchain.dnp.dappnode.eth:8545"
-    ]
+  "chain": "ethereum",
+  "mainService": "webserver",
+  "dockerTimeout": "15min",
+  "requirements": {
+    "minimumDappnodeVersion": "0.2.0"
   },
-  "author": "TrueBlocks LLC",
-  "license": "GPL-3.0",
-  "homepage": {
-    "userui": "http://my.trueblocks.public.dappnode.eth"
+  "globalEnvs": {
+    "all": "true"
+  },
+  "warnings": {
+    "onInstall": "You must set the RPC_PROVIDER and ETHERSCAN_KEY variables before installing the DAppNode Package in order for the setup to work correctly."
+  },
+  "author": "TrueBlocks, LLC  (https://github.com/TrueBlocks)",
+  "categories": [
+    "Blockchain"
+  ],
+  "links": {
+    "homepage": "https://docs.trueblocks.io/docs/prologue/what-is-this/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrueBlocks/trueblocks-docker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TrueBlocks/trueblocks-docker/issues"
   }
 }
