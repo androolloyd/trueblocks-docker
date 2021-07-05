@@ -1,0 +1,18 @@
+version: "2"
+fields:
+  - id: rpcProvider,
+    target:
+      type: environment
+      name: RPC_PROVIDER
+    title: RPC Provider URL
+    description: >-
+      The URL of your RPC provider
+    secret: false
+  - id: etherscanKey,
+    target:
+      type: environment
+      name: ETHERSCAN_KEY
+    title: Your Etherscan API key
+    description: >-
+      Etherscan API key that can be obtained from https://etherscan.io/myapikey
+    secret: false
