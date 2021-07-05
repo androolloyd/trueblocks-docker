@@ -20,6 +20,7 @@ trueblocks-docker is a docker image containing an installation of indexer and a 
 ## Getting started
 
 - Set the `RPC_PROVIDER` variable to your RPC endpoint (see ["Before running"](#before-running))
+- Set the `ETHERSCAN_KEY` variable to your Etherscan API key (see ["Before running"](#before-running))
 - Start the TrueBlocks docker container with `docker-compose up -d`
 - Wait for TrueBlocks to build its cache. ([Why does this take so long?](#why-does-it-take-so-long-to-build-the-index))
 - [Query TrueBlocks for a list of transactions on your accounts](#using-the-api)
@@ -36,7 +37,7 @@ The following instructions are for building on your local machine. Running on Da
 our [Dappnode Instructions](#dappnode-instructions).
 
 ```
-git clone https://github.com/Great-Hill-Corporation/trueblocks-docker.git
+git clone https://github.com/TrueBlocks/trueblocks-docker.git
 cd trueblocks-docker
 docker-compose build
 ```
@@ -47,6 +48,7 @@ Before you bring the TrueBlocks docker container up, take the time to configure 
 - what port do you want to run the trueblocks api server on? Set this in .env file. Right now, the ports line reads 8080. If you want to change this from port 8080 to, say, 8181, then change this to 8181.
 - If you are running TrueBlocks on your computer, copy trueblocks.local.env.example as trueblocks.local.env.
 - What is your node's RPC endpoint? Set your RPC endpoint in the **trueblocks.local.env**, or if running on DAppNode **trueblocks.public.dappnode.eth.env**, file to `RPC_PROVIDER=http://your-rpc-provider:port`. Note that finding your RPC endpoint can initially be quite difficult (see [What is my RPC endpoint?](#what-is-my-rpc-endpoint)).
+- What is your Etherscan API key? Set is as `ETHERSCAN_KEY=yourApiKey` in the **trueblocks.local.env** or **trueblocks.public.dappnode.eth.env** file.
 - Now you're ready to run trueblocks!
 
 ## First run
