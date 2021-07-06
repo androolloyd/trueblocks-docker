@@ -1,0 +1,7 @@
+[version]
+current = "0.9.4-alpha"
+
+[settings]
+cachePath = "/root/.local/share/trueblocks/cache/"
+rpcProvider = "http://erigon.dappnode:8545"
+etherscan_key = "GM679E3GW2RZEPYE7EWGJ9MINEQBCYSFW4"

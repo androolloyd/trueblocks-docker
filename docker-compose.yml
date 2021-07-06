@@ -1,22 +1,41 @@
 version: "3.4"
 
 volumes:
-  trueblocks_data: {}
+  trueblocks_data: { }
+
+
+x-environment: &chiffra-env
+  - ETHERSCAN_KEY=GM679E3GW2RZEPYE7EWGJ9MINEQBCYSFW4
+  - RPC_PROVIDER=http://erigon.dappnode:8545
+
+
+x-volumes: &chiffa-share
+  - "./trueblocks_data:/root/.local/share"
+
+x-service: &chiffra
+  build:
+    context: build
+  restart: unless-stopped
+
+
 
 services:
-  trueblocks:
-    build: .
-    image: trueblocks:0.0.1
-    container_name: trueblocks.dnp.dappnode.eth
-    restart: always
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "200k"
-        max-file: "10"
-    volumes:
-      - trueblocks_data:/root/.local/share/.trueblocks
+  chiffra:
+    <<: *chiffra
+    restart: unless-stopped
+    environment: *chiffra-env
+    volumes: *chiffa-share
+    stdin_open: true # docker run -i
+    tty: true
+  explorer:
+    <<: *chiffra
+    volumes: *chiffa-share
+    restart: unless-stopped
+    environment:
+      - ETHERSCAN_KEY=GM679E3GW2RZEPYE7EWGJ9MINEQBCYSFW4
+      - RPC_PROVIDER=http://erigon.dappnode:8545
+      - IS_API="1"
     ports:
-      - "${TRUEBLOCKS_PORT}:8080"
-    env_file:
-      - trueblocks.local.env #Change for trueblocks.public.dappnode.eth.env for dAppNodeDeployment
+      - "8080:8080"
+    depends_on:
+      - chiffra

@@ -22,12 +22,13 @@ RUN cd /root/quickBlocks-src && \
         cmake ../src && \
         make -j 4
 
+
 FROM alpine:3.12
 WORKDIR /root
-
 RUN apk add --no-cache libstdc++ libgcc libcurl python3 python3-dev procps bash
 COPY --from=builder /root/quickBlocks-src/bin /usr/local/bin
 COPY --from=builder /root/.local/share/trueblocks /root/.local/share/trueblocks
+RUN mkdir -p /root/.local/share/trueblocks/manifest
 
 COPY trueblocks.entrypoint.sh /root
 
